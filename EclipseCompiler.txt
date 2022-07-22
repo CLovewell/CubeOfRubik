@@ -1,0 +1,33 @@
+23 Nov 2017 4:15:35 GMT: Log 'EclipseCompiler.txt' opened: 23 Nov 2017 4:15:35 GMT with name C:\Users\Carnahan\Java Programs\CubeOfRubik\EclipseCompiler.txt
+22 May 2019 18:14:41 GMT: Log 'EclipseCompiler.txt' opened: 22 May 2019 18:14:41 GMT with name C:\Users\Carnahan\Java Programs\CubeOfRubik\EclipseCompiler.txt
+22 May 2019 18:15:18 GMT: diagnostics = javax.tools.DiagnosticCollector@19af8a7
+fileManager = org.eclipse.jdt.internal.compiler.tool.EclipseFileManager@2ad15e
+fileObjects = [C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeCreator.java]
+22 May 2019 18:15:18 GMT: Calling 'org.eclipse.jdt.internal.compiler.tool.EclipseCompiler@197e3d5' with options [-Xlint:deprecation, -Xlint:unchecked, -g, -classpath, C:\Users\Carnahan\Java Programs\CubeOfRubik;C:\DrJava\drjava-beta-20160913-225446.exe]
+22 May 2019 18:15:22 GMT: Compiler call returned
+22 May 2019 18:16:09 GMT: diagnostics = javax.tools.DiagnosticCollector@82102b
+fileManager = org.eclipse.jdt.internal.compiler.tool.EclipseFileManager@57f8b
+fileObjects = [C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeTester.java]
+22 May 2019 18:16:09 GMT: Calling 'org.eclipse.jdt.internal.compiler.tool.EclipseCompiler@14e1055' with options [-Xlint:deprecation, -Xlint:unchecked, -g, -classpath, C:\Users\Carnahan\Java Programs\CubeOfRubik;C:\DrJava\drjava-beta-20160913-225446.exe]
+22 May 2019 18:16:09 GMT: Compiler call returned
+22 May 2019 18:25:41 GMT: diagnostics = javax.tools.DiagnosticCollector@1154a0f
+fileManager = org.eclipse.jdt.internal.compiler.tool.EclipseFileManager@13f2cbf
+fileObjects = [C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeTester.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\VerticalCubeFaceBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\HorizontalCubieBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeSolver.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubePrinter.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeOfRubik3.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeCreator.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeColor.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubieFace.java]
+22 May 2019 18:25:41 GMT: Calling 'org.eclipse.jdt.internal.compiler.tool.EclipseCompiler@145320' with options [-Xlint:deprecation, -Xlint:unchecked, -g, -classpath, C:\Users\Carnahan\Java Programs\CubeOfRubik;C:\DrJava\drjava-beta-20160913-225446.exe]
+22 May 2019 18:25:41 GMT: Compiler call returned
+22 May 2019 18:25:45 GMT: diagnostics = javax.tools.DiagnosticCollector@1cb1a67
+fileManager = org.eclipse.jdt.internal.compiler.tool.EclipseFileManager@1435efc
+fileObjects = [C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeTester.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\VerticalCubeFaceBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\HorizontalCubieBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeSolver.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubePrinter.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeOfRubik3.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeCreator.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeColor.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubieFace.java]
+22 May 2019 18:25:45 GMT: Calling 'org.eclipse.jdt.internal.compiler.tool.EclipseCompiler@1e4a98e' with options [-Xlint:deprecation, -Xlint:unchecked, -g, -classpath, C:\Users\Carnahan\Java Programs\CubeOfRubik;C:\DrJava\drjava-beta-20160913-225446.exe]
+22 May 2019 18:25:46 GMT: Compiler call returned
+22 May 2019 18:26:00 GMT: diagnostics = javax.tools.DiagnosticCollector@157e68e
+fileManager = org.eclipse.jdt.internal.compiler.tool.EclipseFileManager@c42324
+fileObjects = [C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeTester.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\VerticalCubeFaceBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\HorizontalCubieBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeSolver.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubePrinter.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeOfRubik3.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeCreator.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeColor.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubieFace.java]
+22 May 2019 18:26:00 GMT: Calling 'org.eclipse.jdt.internal.compiler.tool.EclipseCompiler@dca113' with options [-Xlint:deprecation, -Xlint:unchecked, -g, -classpath, C:\Users\Carnahan\Java Programs\CubeOfRubik;C:\DrJava\drjava-beta-20160913-225446.exe]
+22 May 2019 18:26:00 GMT: Compiler call returned
+22 May 2019 18:28:35 GMT: diagnostics = javax.tools.DiagnosticCollector@501f6c
+fileManager = org.eclipse.jdt.internal.compiler.tool.EclipseFileManager@177cfa
+fileObjects = [C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeTester.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\VerticalCubeFaceBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\HorizontalCubieBorder.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeSolver.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeOfRubik3.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeCreator.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubeColor.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubieFace.java, C:\Users\Carnahan\Java Programs\CubeOfRubik\CubePrinter.java]
+22 May 2019 18:28:35 GMT: Calling 'org.eclipse.jdt.internal.compiler.tool.EclipseCompiler@1a03d89' with options [-Xlint:deprecation, -Xlint:unchecked, -g, -classpath, C:\Users\Carnahan\Java Programs\CubeOfRubik;C:\DrJava\drjava-beta-20160913-225446.exe]
+22 May 2019 18:28:35 GMT: Compiler call returned
+17 Nov 2021 18:01:50 GMT: Log 'EclipseCompiler.txt' opened: 17 Nov 2021 18:01:50 GMT with name C:\Users\Carnahan\Java Programs\CubeOfRubik\EclipseCompiler.txt

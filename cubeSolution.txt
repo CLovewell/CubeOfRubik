@@ -1,0 +1,37 @@
+X inverse
+First edge cubie of first layer placed.
+X inverse
+Second edge cubie of first layer placed.
+X inverse
+Third edge cubie of first layer placed.
+X inverse
+U inverse
+Fourth edge cubie of first layer placed.
+X inverse
+First corner cubie of first layer placed.
+X inverse
+Second corner cubie of first layer placed.
+X inverse
+Third corner cubie of first layer placed.
+X inverse
+Fourth corner cubie  of first layer placed.
+First layer solved.
+Z
+X
+First edge cubie of second layer placed.
+Z inverse
+Second edge cubie of second layer placed.
+Z inverse
+Third edge cubie of second layer placed.
+Z inverse
+Fourth edge cubie of second layer placed.
+Second layer solved.
+Z
+X
+X
+Third layer edge cubies correctly oriented.
+Third layer corner cubies in correct cubicles.
+Third layer corner cubies correctly oriented.
+Third layer edge cubies in correct cubicles.
+Third layer solved.
+The Rubik's cube has been solved.

@@ -1,0 +1,195 @@
+import java.awt.Color;
+import javax.swing.Icon;
+import java.awt.Component;
+import java.awt.Graphics;
+
+/** Objects of this class represent the smallest unit of
+  * a Rubik's cube, i.e., a single face of a single cubie.
+  * These objects carry information about the color of the
+  * cubie face and the position in the solved cube face
+  * of the cubie face.
+  */
+public class CubieFace implements Icon{
+  //The color of the cubie face
+  private Color color;
+  //The position of the cubie face in the solved cube face
+  private int position;
+  //The side length of this cubie face. Used to implement Icon.
+  private int dimension;
+  
+  //The side length in pixels of a cubie face currently used by this program
+  public static final int CUBIE_FACE_DIMENSION = 50;
+    
+  //The 54 cubie faces of a Rubik's cube.
+  public static final CubieFace B1 = new CubieFace(Color.BLUE, 1, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B2 = new CubieFace(Color.BLUE, 2, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B3 = new CubieFace(Color.BLUE, 3, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B4 = new CubieFace(Color.BLUE, 4, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B5 = new CubieFace(Color.BLUE, 5, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B6 = new CubieFace(Color.BLUE, 6, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B7 = new CubieFace(Color.BLUE, 7, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B8 = new CubieFace(Color.BLUE, 8, CUBIE_FACE_DIMENSION);
+  public static final CubieFace B9 = new CubieFace(Color.BLUE, 9, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G1 = new CubieFace(Color.GREEN, 1, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G2 = new CubieFace(Color.GREEN, 2, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G3 = new CubieFace(Color.GREEN, 3, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G4 = new CubieFace(Color.GREEN, 4, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G5 = new CubieFace(Color.GREEN, 5, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G6 = new CubieFace(Color.GREEN, 6, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G7 = new CubieFace(Color.GREEN, 7, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G8 = new CubieFace(Color.GREEN, 8, CUBIE_FACE_DIMENSION);
+  public static final CubieFace G9 = new CubieFace(Color.GREEN, 9, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O1 = new CubieFace(Color.ORANGE, 1, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O2 = new CubieFace(Color.ORANGE, 2, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O3 = new CubieFace(Color.ORANGE, 3, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O4 = new CubieFace(Color.ORANGE, 4, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O5 = new CubieFace(Color.ORANGE, 5, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O6 = new CubieFace(Color.ORANGE, 6, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O7 = new CubieFace(Color.ORANGE, 7, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O8 = new CubieFace(Color.ORANGE, 8, CUBIE_FACE_DIMENSION);
+  public static final CubieFace O9 = new CubieFace(Color.ORANGE, 9, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R1 = new CubieFace(Color.RED, 1, CUBIE_FACE_DIMENSION); 
+  public static final CubieFace R2 = new CubieFace(Color.RED, 2, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R3 = new CubieFace(Color.RED, 3, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R4 = new CubieFace(Color.RED, 4, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R5 = new CubieFace(Color.RED, 5, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R6 = new CubieFace(Color.RED, 6, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R7 = new CubieFace(Color.RED, 7, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R8 = new CubieFace(Color.RED, 8, CUBIE_FACE_DIMENSION);
+  public static final CubieFace R9 = new CubieFace(Color.RED, 9, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W1 = new CubieFace(Color.WHITE, 1, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W2 = new CubieFace(Color.WHITE, 2, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W3 = new CubieFace(Color.WHITE, 3, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W4 = new CubieFace(Color.WHITE, 4, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W5 = new CubieFace(Color.WHITE, 5, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W6 = new CubieFace(Color.WHITE, 6, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W7 = new CubieFace(Color.WHITE, 7, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W8 = new CubieFace(Color.WHITE, 8, CUBIE_FACE_DIMENSION);
+  public static final CubieFace W9 = new CubieFace(Color.WHITE, 9, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y1 = new CubieFace(Color.YELLOW, 1, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y2 = new CubieFace(Color.YELLOW, 2, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y3 = new CubieFace(Color.YELLOW, 3, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y4 = new CubieFace(Color.YELLOW, 4, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y5 = new CubieFace(Color.YELLOW, 5, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y6 = new CubieFace(Color.YELLOW, 6, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y7 = new CubieFace(Color.YELLOW, 7, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y8 = new CubieFace(Color.YELLOW, 8, CUBIE_FACE_DIMENSION);
+  public static final CubieFace Y9 = new CubieFace(Color.YELLOW, 9, CUBIE_FACE_DIMENSION);
+  
+  /* This diagram shows the position of each cubie face in the solved cube.
+   *                 ____ ____ ____
+   *                | B1 | B2 | B3 |
+   *                |____|____|____| 
+   *                | B4 | B5 | B6 |
+   *                |____|____|____|
+   *                | B7 | B8 | B9 |
+   *  ____ ____ ____|____|____|____|____ ____ ____ ____ ____ ____
+   * | O1 | O2 | O3 | W1 | W2 | W3 | R1 | R2 | R3 | Y1 | Y2 | Y3 |
+   * |____|____|____|____|____|____|____|____|____|____|____|____|
+   * | O4 | O5 | O6 | W4 | W5 | W6 | R4 | R5 | R6 | Y4 | Y5 | Y6 |
+   * |____|____|____|____|____|____|____|____|____|____|____|____|
+   * | O7 | O8 | O9 | W7 | W8 | W9 | R7 | R8 | R9 | Y7 | Y8 | Y9 |
+   * |____|____|____|____|____|____|____|____|____|____|____|____|
+   *                | G1 | G2 | G3 |
+   *                |____|____|____|
+   *                | G4 | G5 | G6 |
+   *                |____|____|____|
+   *                | G7 | G8 | G9 |
+   *                |____|____|____|
+   */
+  
+  /** Creates a new cubie face with a given color, solved
+    * cube face position, and initial cube face.
+    * @param c the color of the cubie face
+    * @param p the position of the cubie face, an integer from 1 to 9
+    * @param d the side length of the cubie face in pixels
+    */
+  public CubieFace(Color c, int p, int d){
+    color = c;
+    position = p;
+    dimension = d;
+  }
+  
+  /** Returns a string representation of the cubie face.
+    * @return the string representation
+    */
+  public String toString(){
+    String s;
+    if (color == Color.BLUE){
+      s = "B";
+    }
+    else if (color == Color.GREEN){
+      s = "G";
+    }
+    else if (color == Color.ORANGE){
+      s = "O";
+    }
+    else if (color == Color.RED){
+      s = "R";
+    }
+    else if (color == Color.WHITE){
+      s = "W";
+    }
+    else if (color == Color.YELLOW){
+      s = "Y";
+    }
+    else s = "";
+    return s + position;
+  }
+  
+  /** Returns the position of this cubie face in the
+    * appropriate face of the solved cube.
+    * @return the solved position
+    */
+  public int getPosition(){
+    return position;
+  }
+  
+  /** Returns the color of this cubie face
+    * @return the color
+    */
+  public Color getColor(){
+    return color;
+  }
+  
+  public int getIconHeight(){
+    return dimension;
+  }
+  
+  public int getIconWidth(){
+    return dimension;
+  }
+  
+  public void paintIcon(Component c,
+                        Graphics g,
+                        int x,
+                        int y){
+    g.setColor(color);
+    g.fillRect(x, y, getIconWidth(), getIconHeight());
+  }
+  
+  public static CubieFace faceOfColor(Color c){
+    if (c == Color.blue){
+      return B5;
+    }
+    else if (c == Color.green){
+      return G5;
+    }
+    else if (c == Color.orange){
+      return O5;
+    }
+    else if (c == Color.red){
+      return R5;
+    }
+    else if (c == Color.white){
+      return W5;
+    }
+    else if (c == Color.yellow){
+      return Y5;
+    }
+    else{
+      System.out.println("A cubie face of an invalid color was sought.");
+      return null;
+    }
+  }
+}
