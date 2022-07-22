@@ -1,0 +1,67 @@
+import javax.swing.Icon;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Color;
+//import java.lang.Math;
+/** Objects of this class are paintable grids for
+  * displaying a two-dimensional representation of
+  * the thre dimensional Rubik's Cube by using perspective
+  * to create the illusion of depth. These objects act as
+  * scaffolds to be filled in cell by cell by other
+  * cube creation classes and methods.
+  */
+public class CubeDisplayFrame implements Icon{
+  //This dimension will be based on the side lenght,
+  //in pixels, of a cubie face.
+  private int dimension;
+  public static final int borderWidth = 2;
+ /** Creates a new CubeDisplayFrame. The CubeDisplayFrame
+   * will provide the scaffold upon which to build the image
+   * of an entire cube.
+   */
+  public CubeDisplayFrame(int cubieFaceSize){
+  dimension = cubieFaceSize;
+  }
+  
+  /** Returns the working dimension in pixels of a cube face.
+    */
+  public int getIconHeight(){
+    return dimension;
+  }
+  /** Returns the working dimension in pixels of a cube face.
+    */
+  public int getIconWidth(){
+    return dimension;
+  }
+  
+  public void paintIcon(Component c, Graphics g, int x, int y){
+    //final int[] cubeOutlineX = new int[2];
+    //final int[] cubeOutlineY = new int[2];
+    //cubeOutlineX[0] = x;
+    //cubeOutlineX[1] = x;
+    //cubeOutlineX[2] = x + 30;
+    //cubeOutlineX[3] = x + 60;
+    //cubeOutlineX[4] = x + 60;
+    //cubeOutlineX[5] = x + 30;
+    //cubeOutlineX[2] = x + (int) Math.round(Math.cos(Math.PI/6)*(4*borderWidth + 3*dimension*Math.cos(Math.PI/4)));
+   // cubeOutlineX[3] = x + (int) Math.round(2*Math.cos(Math.PI/6)*(4*borderWidth + 3*dimension*Math.cos(Math.PI/4)));
+   // cubeOutlineX[4] = x + (int) Math.round(2*Math.cos(Math.PI/6)*(4*borderWidth + 3*dimension*Math.cos(Math.PI/4)));
+   // cubeOutlineX[5] = x + (int) Math.round(Math.cos(Math.PI/6)*(4*borderWidth + 3*dimension*Math.cos(Math.PI/4)));
+    //cubeOutlineY[0] = y;
+    //cubeOutlineY[1] = y - 30;
+    //cubeOutlineY[2] = y + 45;
+    //cubeOutlineY[3] = y - 30;
+    //cubeOutlineY[4] = y;
+    //cubeOutlineY[5] = y + 25;
+   // cubeOutlineY[1] = y + 4*borderWidth + 3*dimension;
+   // cubeOutlineY[2] = y + (int) Math.round((4*borderWidth + 3*dimension)*(1+Math.sin(Math.PI/6)));
+   // cubeOutlineY[3] = y + 4*borderWidth + 3*dimension;
+   // cubeOutlineY[4] = y;
+   // cubeOutlineY[5] = y - (int) Math.round((4*borderWidth + 3*dimension)*Math.sin(Math.PI/6));
+    g.setColor(Color.BLACK);
+    g.drawRect(x, y, 50, 20);
+    //g.drawLine(cubeOutlineX[1], cubeOutlineY[1], cubeOutlineX[2], cubeOutlineY[2]);
+    //g.drawLine(cubeOutlineX[2], cubeOutlineY[2], cubeOutlineX[1], cubeOutlineY[1]);
+    
+  }
+}

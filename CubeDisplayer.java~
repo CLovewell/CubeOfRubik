@@ -1,0 +1,583 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
+import java.awt.Component;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import javax.swing.JTextField;
+
+/** This class knows how to display a Rubik's Cube
+  * on the screen.
+  */
+public class CubePrinter{
+  //The Rubik's cube this cube printer will print
+  private CubeOfRubik3 cube;
+  private CubeSolver solver;
+  private File solution;
+  private JFrame cubeDisplayFrame;
+  //The thickness in pixels of border elements of the cube display
+  public static final int BORDER_THICKNESS = 2;
+  // A pop-up text window telling the user the filepath of the text
+  // file to which a cube's solution is printed
+  private static JFrame solutionPath;
+  // A text field containing the filepath of the solution file
+  private JTextField solutionFilepath;
+  
+  /** Create a new CubePrinter object.
+   *  @param theCube the Rubik's Cube this cube printer will print
+   */
+  public CubePrinter(CubeOfRubik3 theCube){
+    cube = theCube;
+    solver = new CubeSolver(cube);
+    solution = new File("C:\\Users\\Carnahan\\Java Programs\\CubeOfRubik\\cubeSolution.txt");    
+    solutionFilepath = new JTextField(solution.getPath());
+    solutionPath = new JFrame("Solution File");
+    solutionPath.getContentPane().setLayout(new BoxLayout(solutionPath.getContentPane(), BoxLayout.Y_AXIS));
+    solutionPath.add(new JTextField("The solution you requested was printed to the file in the following location:"));
+    solutionPath.add(solutionFilepath);
+    solutionPath.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+  }
+  
+  /** Displays a colored two dimensional representation of the
+    * Rubik's Cube in a JFrame.
+    * @param label the label displayed in the top banner of the JFrame
+    */
+  public void displayCube(String label){
+    cubeDisplayFrame = new JFrame(label);
+    cubeDisplayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    cubeDisplayFrame.getContentPane().setLayout(new BoxLayout(cubeDisplayFrame.getContentPane(), BoxLayout.X_AXIS));
+        
+    Box lb = new Box(BoxLayout.Y_AXIS);
+    Box l = new Box(BoxLayout.Y_AXIS);
+    Box lf = new Box(BoxLayout.Y_AXIS);
+    Box ufdl = new Box(BoxLayout.Y_AXIS);
+    Box ufd = new Box(BoxLayout.Y_AXIS);
+    Box ufdr = new Box(BoxLayout.Y_AXIS);
+    Box rf = new Box(BoxLayout.Y_AXIS);
+    Box r = new Box(BoxLayout.Y_AXIS);
+    Box rb = new Box(BoxLayout.Y_AXIS);
+    Box br = new Box(BoxLayout.Y_AXIS);
+    Box b = new Box(BoxLayout.Y_AXIS);
+    Box bl = new Box(BoxLayout.Y_AXIS);
+    Box clockwiseMoves = new Box(BoxLayout.Y_AXIS);
+    Box counterclockwiseMoves = new Box(BoxLayout.Y_AXIS);
+ 
+    final JLabel l1 = new JLabel(cube.getCornerFace(7, 1));
+    final JLabel l2 = new JLabel(cube.getEdgeFace(4, 1));
+    final JLabel l3 = new JLabel(cube.getCornerFace(3, 1));
+    final JLabel l4 = new JLabel(cube.getEdgeFace(11, 1));
+    final JLabel l5 = new JLabel(cube.getCenterFace(5));
+    final JLabel l6 = new JLabel(cube.getEdgeFace(3, 1));
+    final JLabel l7 = new JLabel(cube.getCornerFace(6, 1));
+    final JLabel l8 = new JLabel(cube.getEdgeFace(7, 1));
+    final JLabel l9 = new JLabel(cube.getCornerFace(2, 2));
+    final JLabel u1 = new JLabel(cube.getCornerFace(7, 0));
+    final JLabel u2 = new JLabel(cube.getEdgeFace(8, 0));
+    final JLabel u3 = new JLabel(cube.getCornerFace(4, 0));
+    final JLabel u4 = new JLabel(cube.getEdgeFace(4, 0));
+    final JLabel u5 = new JLabel(cube.getCenterFace(1));
+    final JLabel u6 = new JLabel(cube.getEdgeFace(5, 0));
+    final JLabel u7 = new JLabel(cube.getCornerFace(3, 2));
+    final JLabel u8 = new JLabel(cube.getEdgeFace(0, 1));
+    final JLabel u9 = new JLabel(cube.getCornerFace(0, 1));
+    final JLabel f1 = new JLabel(cube.getCornerFace(3, 0));
+    final JLabel f2 = new JLabel(cube.getEdgeFace(0, 0));
+    final JLabel f3 = new JLabel(cube.getCornerFace(0, 0));
+    final JLabel f4 = new JLabel(cube.getEdgeFace(3, 0));
+    final JLabel f5 = new JLabel(cube.getCenterFace(0));
+    final JLabel f6 = new JLabel(cube.getEdgeFace(1, 0));
+    final JLabel f7 = new JLabel(cube.getCornerFace(2, 0));
+    final JLabel f8 = new JLabel(cube.getEdgeFace(2, 0));
+    final JLabel f9 = new JLabel(cube.getCornerFace(1, 0));
+    final JLabel d1 = new JLabel(cube.getCornerFace(2, 1));
+    final JLabel d2 = new JLabel(cube.getEdgeFace(2, 1));
+    final JLabel d3 = new JLabel(cube.getCornerFace(1, 2));
+    final JLabel d4 = new JLabel(cube.getEdgeFace(7, 0));
+    final JLabel d5 = new JLabel(cube.getCenterFace(4));
+    final JLabel d6 = new JLabel(cube.getEdgeFace(6, 1));
+    final JLabel d7 = new JLabel(cube.getCornerFace(6, 2));
+    final JLabel d8 = new JLabel(cube.getEdgeFace(10, 1));
+    final JLabel d9 = new JLabel(cube.getCornerFace(5, 2));
+    final JLabel r1 = new JLabel(cube.getCornerFace(0, 2));
+    final JLabel r2 = new JLabel(cube.getEdgeFace(5, 1));
+    final JLabel r3 = new JLabel(cube.getCornerFace(4, 2));
+    final JLabel r4 = new JLabel(cube.getEdgeFace(1, 1));
+    final JLabel r5 = new JLabel(cube.getCenterFace(2));
+    final JLabel r6 = new JLabel(cube.getEdgeFace(9, 0));
+    final JLabel r7 = new JLabel(cube.getCornerFace(1, 1));
+    final JLabel r8 = new JLabel(cube.getEdgeFace(6, 0));
+    final JLabel r9 = new JLabel(cube.getCornerFace(5, 0));
+    final JLabel b1 = new JLabel(cube.getCornerFace(4, 1));
+    final JLabel b2 = new JLabel(cube.getEdgeFace(8, 1));
+    final JLabel b3 = new JLabel(cube.getCornerFace(7, 2));
+    final JLabel b4 = new JLabel(cube.getEdgeFace(9, 1));
+    final JLabel b5 = new JLabel(cube.getCenterFace(3));
+    final JLabel b6 = new JLabel(cube.getEdgeFace(11, 0));
+    final JLabel b7 = new JLabel(cube.getCornerFace(5, 1));
+    final JLabel b8 = new JLabel(cube.getEdgeFace(10, 0));
+    final JLabel b9 = new JLabel(cube.getCornerFace(6, 0));
+    
+    final JLabel horizontalBorder1 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder2 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder3 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder4 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder5 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder6 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder7 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder8 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder9 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder10 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder11 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder12 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder13 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder14 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder15 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder16 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder17 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder18 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder19 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder20 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder21 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder22 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder23 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder24 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder25 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder26 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder27 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder28 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder29 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder30 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder31 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder32 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder33 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder34 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder35 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder36 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder37 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder38 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder39 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder40 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder41 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder42 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder43 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder44 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder45 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder46 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder47 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder48 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder49 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder50 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder51 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder52 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder53 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder54 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder55 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder56 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder57 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder58 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder59 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder60 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder61 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder62 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder63 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder64 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder65 = new JLabel(new HorizontalCubieBorder());
+    final JLabel horizontalBorder66 = new JLabel(new HorizontalCubieBorder());
+    
+    final JLabel verticalBorder1 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder2 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder3 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder4 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 9
+                                                                     + BORDER_THICKNESS * 10));
+    final JLabel verticalBorder5 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 9
+                                                                     + BORDER_THICKNESS * 10));
+    final JLabel verticalBorder6 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 9
+                                                                     + BORDER_THICKNESS * 10));
+    final JLabel verticalBorder7 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 9
+                                                                     + BORDER_THICKNESS * 10));
+    final JLabel verticalBorder8 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder9 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder10 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder11 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder12 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    final JLabel verticalBorder13 = new JLabel(new VerticalCubeFaceBorder(CubieFace.CUBIE_FACE_DIMENSION * 3
+                                                                     + BORDER_THICKNESS * 4));
+    
+    Component leftSpace = Box.createHorizontalStrut(60);
+    Component cubeButtonDivider = Box.createHorizontalStrut(45);
+    Component rightSpace = Box.createHorizontalStrut(60);
+    Component leftGlue = Box.createHorizontalGlue();
+    Component rightGlue = Box.createHorizontalGlue();
+    
+    lb.add(horizontalBorder1);
+    lb.add(l1);
+    lb.add(horizontalBorder2);
+    lb.add(l4);
+    lb.add(horizontalBorder3);
+    lb.add(l7);
+    lb.add(horizontalBorder4);
+    l.add(horizontalBorder5);
+    l.add(l2);
+    l.add(horizontalBorder6);
+    l.add(l5);
+    l.add(horizontalBorder7);
+    l.add(l8);
+    l.add(horizontalBorder8);
+    lf.add(horizontalBorder9);
+    lf.add(l3);
+    lf.add(horizontalBorder10);
+    lf.add(l6);
+    lf.add(horizontalBorder11);
+    lf.add(l9);
+    lf.add(horizontalBorder12);
+    ufdl.add(horizontalBorder13);
+    ufdl.add(u1);
+    ufdl.add(horizontalBorder14);
+    ufdl.add(u4);
+    ufdl.add(horizontalBorder15);
+    ufdl.add(u7);
+    ufdl.add(horizontalBorder16);
+    ufdl.add(f1);
+    ufdl.add(horizontalBorder17);
+    ufdl.add(f4);
+    ufdl.add(horizontalBorder18);
+    ufdl.add(f7);
+    ufdl.add(horizontalBorder19);
+    ufdl.add(d1);
+    ufdl.add(horizontalBorder20);
+    ufdl.add(d4);
+    ufdl.add(horizontalBorder21);
+    ufdl.add(d7);
+    ufdl.add(horizontalBorder22);
+    ufd.add(horizontalBorder23);
+    ufd.add(u2);
+    ufd.add(horizontalBorder24);
+    ufd.add(u5);
+    ufd.add(horizontalBorder25);
+    ufd.add(u8);
+    ufd.add(horizontalBorder26);
+    ufd.add(f2);
+    ufd.add(horizontalBorder27);
+    ufd.add(f5);
+    ufd.add(horizontalBorder28);
+    ufd.add(f8);
+    ufd.add(horizontalBorder29);
+    ufd.add(d2);
+    ufd.add(horizontalBorder30);
+    ufd.add(d5);
+    ufd.add(horizontalBorder31);
+    ufd.add(d8);
+    ufd.add(horizontalBorder32);
+    ufdr.add(horizontalBorder33);
+    ufdr.add(u3);
+    ufdr.add(horizontalBorder34);
+    ufdr.add(u6);
+    ufdr.add(horizontalBorder35);
+    ufdr.add(u9);
+    ufdr.add(horizontalBorder36);
+    ufdr.add(f3);
+    ufdr.add(horizontalBorder37);
+    ufdr.add(f6);
+    ufdr.add(horizontalBorder38);
+    ufdr.add(f9);
+    ufdr.add(horizontalBorder39);
+    ufdr.add(d3);
+    ufdr.add(horizontalBorder40);
+    ufdr.add(d6);
+    ufdr.add(horizontalBorder41);
+    ufdr.add(d9);
+    ufdr.add(horizontalBorder42);
+    rf.add(horizontalBorder43);
+    rf.add(r1);
+    rf.add(horizontalBorder44);
+    rf.add(r4);
+    rf.add(horizontalBorder45);
+    rf.add(r7);
+    rf.add(horizontalBorder46);
+    r.add(horizontalBorder47);
+    r.add(r2);
+    r.add(horizontalBorder48);
+    r.add(r5);
+    r.add(horizontalBorder49);
+    r.add(r8);
+    r.add(horizontalBorder50);
+    rb.add(horizontalBorder51);
+    rb.add(r3);
+    rb.add(horizontalBorder52);
+    rb.add(r6);
+    rb.add(horizontalBorder53);
+    rb.add(r9);
+    rb.add(horizontalBorder54);
+    br.add(horizontalBorder55);
+    br.add(b1);
+    br.add(horizontalBorder56);
+    br.add(b4);
+    br.add(horizontalBorder57);
+    br.add(b7);
+    br.add(horizontalBorder58);
+    b.add(horizontalBorder59);
+    b.add(b2);
+    b.add(horizontalBorder60);
+    b.add(b5);
+    b.add(horizontalBorder61);
+    b.add(b8);
+    b.add(horizontalBorder62);
+    bl.add(horizontalBorder63);
+    bl.add(b3);
+    bl.add(horizontalBorder64);
+    bl.add(b6);
+    bl.add(horizontalBorder65);
+    bl.add(b9);
+    bl.add(horizontalBorder66);
+    JButton B = new JButton("B");
+    B.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.BNoPrinting();
+        displayCube("B performed");
+      }
+    });
+    JButton D = new JButton("D");
+    D.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.DNoPrinting();
+        displayCube("D performed");
+      }
+    });
+    JButton F = new JButton("F");
+    F.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.FNoPrinting();
+        displayCube("F performed");
+      }
+    });
+    JButton L = new JButton("L");
+    L.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.LNoPrinting();
+        displayCube("L performed");
+      }
+    });
+    JButton R = new JButton("R");
+    R.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.RNoPrinting();
+        displayCube("R performed");
+      }
+    });
+    JButton U = new JButton("U");
+    U.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.UNoPrinting();
+        displayCube("U performed");
+      }
+    });
+    JButton X = new JButton("X");
+    X.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.XNoPrinting();
+        displayCube("X performed");
+      }
+    });
+    JButton Y = new JButton("Y");
+    Y.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.YNoPrinting();
+        displayCube("Y performed");
+      }
+    });
+    JButton Z = new JButton("Z");
+    Z.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.ZNoPrinting();
+        displayCube("Z performed");
+      }
+    });
+    JButton BInv = new JButton("B Inverse");
+    BInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.BInvNoPrinting();
+        displayCube("B inverse performed");
+      }
+    });
+    JButton DInv = new JButton("D Inverse");
+    DInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.DInvNoPrinting();
+        displayCube("D inverse performed");
+      }
+    });
+    JButton FInv = new JButton("F Inverse");
+    FInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.FInvNoPrinting();
+        displayCube("F inverse performed");
+      }
+    });
+    JButton LInv = new JButton("L Inverse");
+    LInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.LInvNoPrinting();
+        displayCube("L inverse performed");
+      }
+    });
+    JButton RInv = new JButton("R Inverse");
+    RInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.RInvNoPrinting();
+        displayCube("R inverse performed");
+      }
+    });
+    JButton UInv = new JButton("U Inverse");
+    UInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.UInvNoPrinting();
+        displayCube("U inverse performed");
+      }
+    });
+    JButton XInv = new JButton("X Inverse");
+    XInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.XInvNoPrinting();
+        displayCube("X inverse performed");
+      }
+    });
+    JButton YInv = new JButton("Y Inverse");
+    YInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.YInvNoPrinting();
+        displayCube("Y inverse performed");
+      }
+    });
+    JButton ZInv = new JButton("Z Inverse");
+    ZInv.addMouseListener(new MouseAdapter(){
+      public void mouseClicked(MouseEvent e){
+        cubeDisplayFrame.dispose();
+        cube.ZInvNoPrinting();
+        displayCube("Z inverse performed");
+      }
+    });
+    
+      JButton solve = new JButton("Solve");
+      solve.addMouseListener(new MouseAdapter(){
+         public void mouseClicked(MouseEvent e){
+           try{                       
+             PrintWriter writer = new PrintWriter(solution);
+             cubeDisplayFrame.dispose();
+             solver.layerSolve(writer);
+             displayCube("Solved cube");
+             writer.close();
+           }
+           catch (FileNotFoundException E){
+             System.out.println("The solution file could not be found.");
+           }           
+           solutionPath.pack();
+           solutionPath.setVisible(true);
+         }
+       });
+    
+    
+    clockwiseMoves.add(B);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(D);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(F);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(L);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(R);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(U);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(X);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(Y);
+    clockwiseMoves.add(Box.createVerticalStrut(10));
+    clockwiseMoves.add(Z);
+    counterclockwiseMoves.add(BInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(DInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(FInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(LInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(RInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(UInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(XInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(YInv);
+    counterclockwiseMoves.add(Box.createVerticalStrut(10));
+    counterclockwiseMoves.add(ZInv);
+    
+    cubeDisplayFrame.getContentPane().add(leftGlue);
+    cubeDisplayFrame.getContentPane().add(leftSpace);
+    cubeDisplayFrame.getContentPane().add(verticalBorder1);
+    cubeDisplayFrame.getContentPane().add(lb);
+    cubeDisplayFrame.getContentPane().add(verticalBorder2);
+    cubeDisplayFrame.getContentPane().add(l);
+    cubeDisplayFrame.getContentPane().add(verticalBorder3);
+    cubeDisplayFrame.getContentPane().add(lf);
+    cubeDisplayFrame.getContentPane().add(verticalBorder4);
+    cubeDisplayFrame.getContentPane().add(ufdl);
+    cubeDisplayFrame.getContentPane().add(verticalBorder5);
+    cubeDisplayFrame.getContentPane().add(ufd);
+    cubeDisplayFrame.getContentPane().add(verticalBorder6);
+    cubeDisplayFrame.getContentPane().add(ufdr);
+    cubeDisplayFrame.getContentPane().add(verticalBorder7);
+    cubeDisplayFrame.getContentPane().add(rf);
+    cubeDisplayFrame.getContentPane().add(verticalBorder8);
+    cubeDisplayFrame.getContentPane().add(r);
+    cubeDisplayFrame.getContentPane().add(verticalBorder9);
+    cubeDisplayFrame.getContentPane().add(rb);
+    cubeDisplayFrame.getContentPane().add(verticalBorder10);
+    cubeDisplayFrame.getContentPane().add(br);
+    cubeDisplayFrame.getContentPane().add(verticalBorder11);
+    cubeDisplayFrame.getContentPane().add(b);
+    cubeDisplayFrame.getContentPane().add(verticalBorder12);
+    cubeDisplayFrame.getContentPane().add(bl);
+    cubeDisplayFrame.getContentPane().add(verticalBorder13);
+    cubeDisplayFrame.getContentPane().add(cubeButtonDivider);
+    cubeDisplayFrame.getContentPane().add(clockwiseMoves);
+    cubeDisplayFrame.getContentPane().add(Box.createHorizontalStrut(45));
+    cubeDisplayFrame.getContentPane().add(counterclockwiseMoves);
+    cubeDisplayFrame.getContentPane().add(Box.createHorizontalStrut(40));
+    cubeDisplayFrame.getContentPane().add(solve);
+    cubeDisplayFrame.getContentPane().add(rightSpace);
+    cubeDisplayFrame.getContentPane().add(rightGlue);   
+    
+    cubeDisplayFrame.pack();
+    cubeDisplayFrame.setVisible(true);
+  }
+}
